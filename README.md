@@ -45,6 +45,7 @@
 ### Making an installation folder
 1. Clone the repository.
 2. Enter your subscription key under -
+
 """ 
 subscription_key = "52e2c8faa1144077b4f44ef952f761db"
 assert subscription_key

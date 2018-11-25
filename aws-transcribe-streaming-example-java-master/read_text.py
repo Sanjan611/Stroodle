@@ -77,7 +77,7 @@ if __name__ == "__main__":
     
     
         else:
-            
+            """
             if "time" in text:
                 print("found")
                 text = text.replace("time", "")
@@ -85,7 +85,7 @@ if __name__ == "__main__":
             if "One day" in text:
                 print("found")
                 text = text.replace("One day", "")
-        
+        """
 
         
             print("Phrase to be analyzed: " + text)
@@ -99,18 +99,18 @@ if __name__ == "__main__":
                 print("Text after " + text)
                 previous_text = text
                 search_term = text_analyse(text)[0]
-<<<<<<< HEAD
+#<<<<<<< HEAD
                 sentiment=text_analyse(text)[1]
-=======
+#=======
                 sentiment = text_analyse(text)[1]
->>>>>>> e88077ba65cd908ef3b3dae881d8f0e4806cc661
+#>>>>>>> e88077ba65cd908ef3b3dae881d8f0e4806cc661
 
                 if search_term == previous_search_term:
                     pass
                 else:
                     previous_search_term = search_term
                     phrase_to_image(search_term + " cartoon")
-<<<<<<< HEAD
+#<<<<<<< HEAD
 
                     # SOUND STUFF
 
@@ -131,7 +131,7 @@ if __name__ == "__main__":
                     # sound effects checked every time
                     audio_sound_effects = sound_stuff.which_sound_effect(search_term)
 
-                    if(audio_sound_effects！= None)：
+                    if(audio_sound_effects!= ' ')：
                         pygame.mixer.Channel(1).stop() 
                         #pygame.mixer.music.load(audio_sound_effects)
                         pygame.mixer.Channel(1).play(pygame.mixer.Sound(audio_sound_effects))
@@ -146,43 +146,40 @@ if __name__ == "__main__":
                         
                  
 =======
-#
-#                    # SOUND STUFF
-#
-#                    pygame.mixer.init()
-#                    print("MIXER IS STARTED!!")
-#
-#                    #  checking if there is a change in sentiment forr the background music
-#                    if text_analyse(text)[1][1] == previous_sentiment[1]:
-#                        pass
-#                    else:
-#                        audio_background = sound_stuff.which_background_audio(sentiment)
-#                        pygame.mixer.Channel(0).stop()
-#                        #pygame.mixer.music.load(audio_background)
-#                        pygame.mixer.Channel(0).play(pygame.mixer.Sound(audio_background))
-#                    #pygame.mixer.music.play(1)
-#
-#                    previous_sentiment = sentiment
-#
-#                    # sound effects checked every time
-#                    audio_sound_effects = sound_stuff.which_sound_effect(search_term)
-#
-##                    print(audio_sound_effects)
-#                    if (audio_sound_effects != ' '):
-#                        pygame.mixer.Channel(1).stop()
-#                        pygame.mixer.music.load(audio_sound_effects)
-#                        pygame.mixer.Channel(1).play(pygame.mixer.Sound(audio_sound_effects))
-#                    """
-#                        pygame.mixer.music.stop()
-#                        pygame.mixer.music.load(audio_sound_effects)
-#                        pygame.mixer.music.play(1)
-#                        """
+
+                    # SOUND STUFF
+
+                    pygame.mixer.init()
+                    print("MIXER IS STARTED!!")
+
+                    #  checking if there is a change in sentiment forr the background music
+                    if text_analyse(text)[1][1] == previous_sentiment[1]:
+                        pass
+                    else:
+                        audio_background = sound_stuff.which_background_audio(sentiment)
+                        pygame.mixer.Channel(0).stop()
+                        #pygame.mixer.music.load(audio_background)
+                        pygame.mixer.Channel(0).play(pygame.mixer.Sound(audio_background))
+                    #pygame.mixer.music.play(1)
+
+                  previous_sentiment = sentiment
+                   # sound effects checked every time                    audio_sound_effects = sound_stuff.which_sound_effect(search_term)
+                    print(audio_sound_effects)                    
+                    if (audio_sound_effects != ' '):
+                        pygame.mixer.Channel(1).stop()                        
+                        pygame.mixer.music.load(audio_sound_effects)
+                        pygame.mixer.Channel(1).play(pygame.mixer.Sound(audio_sound_effects))
+                    """
+                        pygame.mixer.music.stop()
+                        pygame.mixer.music.load(audio_sound_effects)
+                        pygame.mixer.music.play(1)
+                        """
 
                             
                             
                             
                             
->>>>>>> e88077ba65cd908ef3b3dae881d8f0e4806cc661
+
             except:
                 pass
 

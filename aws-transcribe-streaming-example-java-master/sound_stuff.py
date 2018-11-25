@@ -16,14 +16,14 @@ story_phrases = ["Once upon a time", "time"]
 kinematics = ["walking", "running", "jumping", "skipping"]
 
 # short clip sound effects - dictionary
-sound_effects = {"thunder":"Storm_exclamation.mp3", 
-                 "roar":"European_Dragon_Roaring_and_breathe_fire-daniel-simon.mp3",
+sound_effects = {"thunder":"Storm_exclamation_wav.wav", 
+                 "roar":"European_Dragon_Roaring_and_breathe_fire-daniel-simon_wav.wav",
                  "warrior":" ",
                  "fire":" "}
 
 # audio clips
-negative_music = 'Beethoven-MoonlightSonata.mp3'    
-positive_music = 'SCOTT_JOPLIN_The_Entertainer.mp3'
+negative_music = 'Beethoven-MoonlightSonata_wav.wav'    
+positive_music = 'SCOTT_JOPLIN_The_Entertainer_wav.wav'
 
 
 

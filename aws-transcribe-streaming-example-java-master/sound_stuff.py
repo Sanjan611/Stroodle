@@ -44,7 +44,7 @@ def which_background_audio(sentiment):
     
     #sentiment - tuple (value, type) - HIGHEST amongst all
     # keywords is a list
-    audio_clip = ''
+    audio_clip = ' '
     try:
         if sentiment[1] == 'Neutral' or 'Mixed':
             return None
@@ -55,11 +55,12 @@ def which_background_audio(sentiment):
             audio_clip = positive_music 
             
     except:
-        audio_clip = None
+        audio_clip = ' '
         
     return audio_clip
 
 def which_sound_effect(search_term):
+    
     keywords = search_term.split(' ')
     ps = PorterStemmer()
     
@@ -68,15 +69,15 @@ def which_sound_effect(search_term):
         for word in keywords:
             print(ps.stem(word))
             if ps.stem(word) in sound_effects.keys():
-                key = word
+                key = ps.stem(word)
             
         audio_clip = sound_effects[key]
         #print(audio_clip)
     except:
-        audio_clip = None
+        audio_clip = ' '
     
     return audio_clip
     
-#print(which_sound_effect(['storm', 'waits']))
+#print(which_sound_effect('thunder waits'))
 #remove_unwanted_words('red dragon thunder')    
 #print(which_background_audio(0.5))

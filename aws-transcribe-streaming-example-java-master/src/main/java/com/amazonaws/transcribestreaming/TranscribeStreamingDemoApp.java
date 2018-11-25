@@ -28,10 +28,10 @@ public class TranscribeStreamingDemoApp extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-//        String command = "python /c start python read_text.py";
-//        Process p = Runtime.getRuntime().exec(command);
-
         WindowController windowController = new WindowController(primaryStage);
+
+        String command = "python read_text.py";
+        Process p = Runtime.getRuntime().exec(command);
 
         primaryStage.setOnCloseRequest(__ -> {
             windowController.close();

@@ -3,7 +3,6 @@ import boto3
 import json
 import requests
 import json
-import matplotlib.pyplot as plt
 from PIL import Image
 from io import BytesIO
 import sound_stuff
@@ -24,7 +23,7 @@ def phrase_to_image(search_term):
     response = requests.get(search_url, headers=headers, params=params)
     response.raise_for_status()
     search_results = response.json()
-#    search_urls=search_results["value"][0]["thumbnailUrl"]
+    #    search_urls=search_results["value"][0]["thumbnailUrl"]
     search_urls=search_results["value"][0]["thumbnailUrl"]
     image_data = requests.get(search_urls)
     image_data.raise_for_status()
@@ -35,21 +34,22 @@ def phrase_to_image(search_term):
 
 def text_analyse(text):
     comprehend = boto3.client(service_name='comprehend', region_name='us-east-1')
-#    print('Calling DetectKeyPhrases')
+    #    print('Calling DetectKeyPhrases')
     a=json.dumps(comprehend.detect_key_phrases(Text=text, LanguageCode='en'), sort_keys=True, indent=4)
     b=json.dumps(comprehend.detect_sentiment(Text=text, LanguageCode='en'), sort_keys=True, indent=4)
-
+    
     aa=json.loads(a)
     bb=json.loads(b)
-#    print(aa)
+    #    print(aa)
     try:
         aaa=aa["KeyPhrases"][0]["Text"]
-        aaa=sound_stuff.remove_unwanted_words(aaa)
-        sentiment_analysis = bb["SentimentScore"]
-        ccc=max(zip(aa['SentimentScore'].values(),aa['SentimentScore'].keys()))
+#        aaa=sound_stuff.remove_unwanted_words(aaa)
+#        sentiment_analysis = bb["SentimentScore"]
+#        ccc=max(zip(aa['SentimentScore'].values(),aa['SentimentScore'].keys()))
         print("Keyword: " + aaa)
-        print("Max_Sentiment"+ccc)
-#    print(sentiment_analysis["Negative"])
+#        print("Max_Sentiment: "+ccc)
+        ccc=0
+        #    print(sentiment_analysis["Negative"])
         return([aaa,ccc])#fo
     except:
         pass
@@ -60,11 +60,11 @@ if __name__ == "__main__":
     
     previous_text = ""
     previous_search_term = ""
-
+    
     # initialise the sentiment
-    previous_sentiment = (0.9, 'Negative')
-
-
+    previous_sentiment = (0.9, 'Positive')
+    
+    
     
     while True:
         
@@ -73,9 +73,9 @@ if __name__ == "__main__":
         if text=="":
             print("Waiting")
             time.sleep(1)
-        
-        
-
+    
+    
+    
         else:
             
             if "time" in text:
@@ -85,9 +85,11 @@ if __name__ == "__main__":
             if "One day" in text:
                 print("found")
                 text = text.replace("One day", "")
-            
+        
+
+        
             print("Phrase to be analyzed: " + text)
-                
+            
             try:
                 print("Text before " + text)
                 text = text.replace(previous_text[:-2], "")
@@ -97,13 +99,18 @@ if __name__ == "__main__":
                 print("Text after " + text)
                 previous_text = text
                 search_term = text_analyse(text)[0]
+<<<<<<< HEAD
                 sentiment=text_analyse(text)[1]
+=======
+                sentiment = text_analyse(text)[1]
+>>>>>>> e88077ba65cd908ef3b3dae881d8f0e4806cc661
 
                 if search_term == previous_search_term:
                     pass
                 else:
                     previous_search_term = search_term
                     phrase_to_image(search_term + " cartoon")
+<<<<<<< HEAD
 
                     # SOUND STUFF
 
@@ -138,6 +145,44 @@ if __name__ == "__main__":
                     
                         
                  
+=======
+#
+#                    # SOUND STUFF
+#
+#                    pygame.mixer.init()
+#                    print("MIXER IS STARTED!!")
+#
+#                    #  checking if there is a change in sentiment forr the background music
+#                    if text_analyse(text)[1][1] == previous_sentiment[1]:
+#                        pass
+#                    else:
+#                        audio_background = sound_stuff.which_background_audio(sentiment)
+#                        pygame.mixer.Channel(0).stop()
+#                        #pygame.mixer.music.load(audio_background)
+#                        pygame.mixer.Channel(0).play(pygame.mixer.Sound(audio_background))
+#                    #pygame.mixer.music.play(1)
+#
+#                    previous_sentiment = sentiment
+#
+#                    # sound effects checked every time
+#                    audio_sound_effects = sound_stuff.which_sound_effect(search_term)
+#
+##                    print(audio_sound_effects)
+#                    if (audio_sound_effects != ' '):
+#                        pygame.mixer.Channel(1).stop()
+#                        pygame.mixer.music.load(audio_sound_effects)
+#                        pygame.mixer.Channel(1).play(pygame.mixer.Sound(audio_sound_effects))
+#                    """
+#                        pygame.mixer.music.stop()
+#                        pygame.mixer.music.load(audio_sound_effects)
+#                        pygame.mixer.music.play(1)
+#                        """
+
+                            
+                            
+                            
+                            
+>>>>>>> e88077ba65cd908ef3b3dae881d8f0e4806cc661
             except:
                 pass
 

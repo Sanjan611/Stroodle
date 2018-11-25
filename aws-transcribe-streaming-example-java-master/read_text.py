@@ -97,7 +97,7 @@ if __name__ == "__main__":
                 print("Text after " + text)
                 previous_text = text
                 search_term = text_analyse(text)[0]
-                sentiment=text_analyse(text)[1][1]
+                sentiment=text_analyse(text)[1]
 
                 if search_term == previous_search_term:
                     pass
@@ -110,7 +110,7 @@ if __name__ == "__main__":
                     pygame.mixer.init()
 
                     #  checking if there is a change in sentiment forr the background music
-                    if text_analyse(text)[1] == previous_sentiment:
+                    if text_analyse(text)[1][1] == previous_sentiment[1]:
                         pass
                     else:
                         audio_background = sound_stuff.which_background_audio(sentiment)
@@ -124,7 +124,7 @@ if __name__ == "__main__":
                     # sound effects checked every time
                     audio_sound_effects = sound_stuff.which_sound_effect(search_term)
 
-                    if(audio_sound_effects_result！= None)：
+                    if(audio_sound_effects！= None)：
                         pygame.mixer.Channel(1).stop() 
                         #pygame.mixer.music.load(audio_sound_effects)
                         pygame.mixer.Channel(1).play(pygame.mixer.Sound(audio_sound_effects))

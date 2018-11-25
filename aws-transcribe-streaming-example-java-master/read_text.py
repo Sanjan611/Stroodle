@@ -19,7 +19,7 @@ assert subscription_key
 search_url = "https://api.cognitive.microsoft.com/bing/v7.0/images/search"
 
 
-def phrase_to_image(search_term):
+def phrase_to_image(search_term, x, y):
     headers = {"Ocp-Apim-Subscription-Key" : subscription_key}
     params  = {"q": search_term, "license": "public", "imageType": "photo"}
     response = requests.get(search_url, headers=headers, params=params)
@@ -36,8 +36,10 @@ def phrase_to_image(search_term):
     image_file = io.BytesIO(image_str)
     # load the image from a file or stream
     image = pg.image.load(image_file)
+    image = image.convert()
+    pg.transform.scale(image, (300, 300))
     # draw image, position the image ulc at x=20, y=20
-    screen.blit(image, (0, 0))
+    screen.blit(image, (x, y))
     # nothing gets displayed until one updates the screen
     pg.display.flip()
     # time.sleep(5)
@@ -57,12 +59,10 @@ def text_analyse(text):
     #    print(aa)
     try:
         aaa=aa["KeyPhrases"][0]["Text"]
-#        aaa=sound_stuff.remove_unwanted_words(aaa)
-#        sentiment_analysis = bb["SentimentScore"]
-#        ccc=max(zip(aa['SentimentScore'].values(),aa['SentimentScore'].keys()))
+        aaa=sound_stuff.remove_unwanted_words(aaa)
+        ccc=max(zip(bb['SentimentScore'].values(),bb['SentimentScore'].keys()))
         print("Keyword: " + aaa)
-#        print("Max_Sentiment: "+ccc)
-        ccc=0
+        print("Max_Sentiment: " + ccc[1])
         #    print(sentiment_analysis["Negative"])
         return([aaa,ccc])#fo
     except:
@@ -72,18 +72,19 @@ def text_analyse(text):
 
 if __name__ == "__main__":
     
+    count=0
+    x=10
+    y=10
     pg.init()
     white = (255, 255, 255)
-    screen = pg.display.set_mode((1600, 1400), pg.RESIZABLE)
+    screen = pg.display.set_mode((1600, 1200), pg.RESIZABLE)
     screen.fill(white)
     
     previous_text = ""
     previous_search_term = ""
     
     # initialise the sentiment
-    previous_sentiment = (0.9, 'Positive')
-    
-    
+    previous_sentiment = (0.9, 'Negative')
     
     while True:
         
@@ -103,7 +104,7 @@ if __name__ == "__main__":
     
     
         else:
-            
+            """
             if "time" in text:
                 print("found")
                 text = text.replace("time", "")
@@ -111,7 +112,7 @@ if __name__ == "__main__":
             if "One day" in text:
                 print("found")
                 text = text.replace("One day", "")
-        
+        """
 
         
             print("Phrase to be analyzed: " + text)
@@ -126,83 +127,61 @@ if __name__ == "__main__":
                 previous_text = text
                 search_term = text_analyse(text)[0]
 
-                sentiment=text_analyse(text)[1]
+                sentiment = text_analyse(text)[1]
 
                 if search_term == previous_search_term:
                     pass
+
                 else:
                     previous_search_term = search_term
-                    phrase_to_image(search_term + " cartoon")
-#
-#                    # SOUND STUFF
-#
-#                    pygame.mixer.init()
-#                    print("MIXER IS STARTED!!")
-#
-#                    #  checking if there is a change in sentiment forr the background music
-#                    if text_analyse(text)[1][1] == previous_sentiment[1]:
-#                        pass
-#                    else:
-#                        audio_background = sound_stuff.which_background_audio(sentiment)
-#                        pygame.mixer.Channel(0).stop()
-#                        #pygame.mixer.music.load(audio_background)
-#                        pygame.mixer.Channel(0).play(pygame.mixer.Sound(audio_background))
-#                    #pygame.mixer.music.play(1)
-#
-#                    previous_sentiment = sentiment
-#
-#                    # sound effects checked every time
-#                    audio_sound_effects = sound_stuff.which_sound_effect(search_term)
-#
-##                    print(audio_sound_effects)
-#                    if (audio_sound_effects != ' '):
-#                        pygame.mixer.Channel(1).stop()
-#                        pygame.mixer.music.load(audio_sound_effects)
-#                        pygame.mixer.Channel(1).play(pygame.mixer.Sound(audio_sound_effects))
-#                    """
-#                        pygame.mixer.music.stop()
-#                        pygame.mixer.music.load(audio_sound_effects)
-#                        pygame.mixer.music.play(1)
-#                        """
-
-                            
-                            
-                            
-                            
+                    phrase_to_image(search_term + " cartoon", x, y)
+                    x = x + 400
+                    if x == 1210:
+                        x = 10
+                        y = y + 300
 
                     # SOUND STUFF
 
-#                    pygame.mixer.init()
+                    pg.mixer.init()
 
+                    if count==0:
+                        audio_background = sound_stuff.which_background_audio(previous_sentiment)
+                        pg.mixer.Channel(0).stop()
+                        #pygame.mixer.music.load(audio_background)
+                        pg.mixer.Channel(0).play(pg.mixer.Sound(audio_background))
+                        count = count + 1
                     #  checking if there is a change in sentiment forr the background music
-#                    if text_analyse(text)[1][1] == previous_sentiment[1]:
+#                    if (text_analyse(text)[1][1] == "Neutral") or (previous_sentiment[1] == "Neutral"):
 #                        pass
-#                    else:
-#                        audio_background = sound_stuff.which_background_audio(sentiment)
-#                        pygame.mixer.Channel(0).stop()
-#                        #pygame.mixer.music.load(audio_background)
-#                        pygame.mixer.Channel(0).play(pygame.mixer.Sound(audio_background))
-#                        #pygame.mixer.music.play(1)
-#
-#                    previous_sentiment = sentiment
-#
-#                    # sound effects checked every time
-#                    audio_sound_effects = sound_stuff.which_sound_effect(search_term)
-#
-#                    if(audio_sound_effects！= None)：
-#                        pygame.mixer.Channel(1).stop()
-#                        #pygame.mixer.music.load(audio_sound_effects)
-#                        pygame.mixer.Channel(1).play(pygame.mixer.Sound(audio_sound_effects))
-#                    """
-#                        pygame.mixer.music.stop()
-#                        pygame.mixer.music.load(audio_sound_effects)
-#                        pygame.mixer.music.play(1)
-#                        """
-
+                    if (text_analyse(text)[1][1] == "Positive"):
+                        if count == 1:
+                            print(sentiment[1])
+                            audio_background = sound_stuff.which_background_audio(sentiment)
+                            print(audio_background)
+                            pg.mixer.Channel(0).stop()
+                    #pygame.mixer.music.load(audio_background)
+                            pg.mixer.Channel(0).play(pg.mixer.Sound(audio_background))
+                            count = count + 1
+                        else:
+                            pass
+#                    pygame.mixer.music.play(1)
 
                     
-                        
-                 
+#                    previous_sentiment = sentiment
+
+                   # sound effects checked every time
+                    audio_sound_effects = sound_stuff.which_sound_effect(search_term)
+                    print(audio_sound_effects)
+                    if (audio_sound_effects != ' '):
+                        pg.mixer.Channel(1).stop()
+                        #pygame.mixer.music.load(audio_sound_effects)
+                        pg.mixer.Channel(1).play(pg.mixer.Sound(audio_sound_effects))
+                    """
+                        pygame.mixer.music.stop()
+                        pygame.mixer.music.load(audio_sound_effects)
+                        pygame.mixer.music.play(1)
+                    """
+
             except:
                 pass
 

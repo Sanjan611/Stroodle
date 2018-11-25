@@ -16,14 +16,20 @@ story_phrases = ["Once upon a time", "time"]
 kinematics = ["walking", "running", "jumping", "skipping"]
 
 # short clip sound effects - dictionary
-sound_effects = {"thunder":"Storm_exclamation.mp3", 
-                 "roar":"European_Dragon_Roaring_and_breathe_fire-daniel-simon.mp3",
+sound_effects = {"thunder":"Storm_exclamation_wav.wav", 
+                 "lion":"European_Dragon_Roaring_and_breathe_fire-daniel-simon_wav.wav",
+                 "dancing": "despacito.wav",
+                 "dancing.": "despacito.wav",
+                 "dance": "despacito.wav",
+                 "thank you": "wish_you.wav",
+                 "Christmas": "wish_you.wav",
+                 "Christmas.": "wish_you.wav",
                  "warrior":" ",
                  "fire":" "}
 
 # audio clips
-negative_music = 'Beethoven-MoonlightSonata.mp3'    
-positive_music = 'SCOTT_JOPLIN_The_Entertainer.mp3'
+negative_music = 'Beethoven-MoonlightSonata_wav.wav'    
+positive_music = 'SCOTT_JOPLIN_The_Entertainer_wav.wav'
 
 
 
@@ -41,23 +47,21 @@ def remove_unwanted_words(search_term):
 
 
 def which_background_audio(sentiment):
-    
-    #sentiment - tuple (value, type) - HIGHEST amongst all
-    # keywords is a list
-    audio_clip = ' '
-    try:
-        if sentiment[1] == 'Neutral' or 'Mixed':
-            return None
-        
-        elif sentiment[1] == 'Negative':
-            audio_clip = negative_music
-        elif sentiment[1] == 'Positive':
-            audio_clip = positive_music 
-            
-    except:
-        audio_clip = ' '
-        
-    return audio_clip
+#
+#    #sentiment - tuple (value, type) - HIGHEST amongst all
+#    # keywords is a list
+#    audio_clip = ' '
+#
+#        #if (sentiment[1] == 'Neutral' or sentiment[1] == 'Mixed'):
+#        #   pass
+#
+#    if sentiment[1] == 'Negative':
+#
+    if (sentiment[1] == 'Positive'):
+        return positive_music
+    else:
+        return negative_music
+
 
 def which_sound_effect(search_term):
     

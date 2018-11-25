@@ -44,7 +44,7 @@ def text_analyse(text):
 #    print(aa)
     try:
         aaa=aa["KeyPhrases"][0]["Text"]
-        sound_stuff.remove_unwanted_words(aaa)
+        aaa=sound_stuff.remove_unwanted_words(aaa)
         sentiment_analysis = bb["SentimentScore"]
         ccc=max(zip(aa['SentimentScore'].values(),aa['SentimentScore'].keys()))
         print("Keyword: " + aaa)
@@ -60,10 +60,9 @@ if __name__ == "__main__":
     
     previous_text = ""
     previous_search_term = ""
-    previous_sentiment=""
 
     # initialise the sentiment
-    sentiment_init = (0.9, 'Negative')
+    previous_sentiment = (0.9, 'Negative')
 
 
     
@@ -99,6 +98,7 @@ if __name__ == "__main__":
                 previous_text = text
                 search_term = text_analyse(text)[0]
                 sentiment=text_analyse(text)[1]
+
                 if search_term == previous_search_term:
                     pass
                 else:
@@ -110,7 +110,7 @@ if __name__ == "__main__":
                     pygame.mixer.init()
 
                     #  checking if there is a change in sentiment forr the background music
-                    if text_analyse(text)[1] == previous_sentiment:
+                    if text_analyse(text)[1][1] == previous_sentiment[1]:
                         pass
                     else:
                         audio_background = sound_stuff.which_background_audio(sentiment)
@@ -122,9 +122,9 @@ if __name__ == "__main__":
                     previous_sentiment = sentiment
 
                     # sound effects checked every time
-                    audio_sound_effects = sound_stuff.which_sound_effect(keywords)
+                    audio_sound_effects = sound_stuff.which_sound_effect(search_term)
 
-                    if(audio_sound_effects_result！= None)：
+                    if(audio_sound_effects！= None)：
                         pygame.mixer.Channel(1).stop() 
                         #pygame.mixer.music.load(audio_sound_effects)
                         pygame.mixer.Channel(1).play(pygame.mixer.Sound(audio_sound_effects))

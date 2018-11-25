@@ -46,7 +46,7 @@ def which_background_audio(sentiment):
     # keywords is a list
     audio_clip = ''
     try:
-        if sentiment[1] == 'Neutral':
+        if sentiment[1] == 'Neutral' or 'Mixed':
             return None
         
         elif sentiment[1] == 'Negative':

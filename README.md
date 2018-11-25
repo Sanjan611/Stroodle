@@ -1,20 +1,20 @@
-#Stroodle (Oxford Hackathon 2018)
+ # Stroodle (Oxford Hackathon 2018)
 
-##Inspiration;
-*The ReadtoMe app that was developed using Amazon’s Transcribe and Comprehend API
-*We felt there was more we could do with the technology on offer
-*We wanted to make storytelling a better experience not just for the person listening but also for the narrator; an interactive experience that could give the narrator feedback and enhance their creativity
-*Narration in itself requires a tremendous amount of creative/ imaginative thought but we felt that people had little understanding of this.
-*Our target audience is children below the age of 5 who are learning to communicate. We want to encourage children to have fun whilst learning and use our software to learn to talk actively. 
+## Inspiration;
+* The ReadtoMe app that was developed using Amazon’s Transcribe and Comprehend API
+* We felt there was more we could do with the technology on offer
+* We wanted to make storytelling a better experience not just for the person listening but also for the narrator; an interactive experience that could give the narrator feedback and enhance their creativity
+* Narration in itself requires a tremendous amount of creative/ imaginative thought but we felt that people had little understanding of this.
+* Our target audience is children below the age of 5 who are learning to communicate. We want to encourage children to have fun whilst learning and use our software to learn to talk actively. 
 
-##What it does;
-Our software converts speech into text using AWS Transcribe real time.
-It identifies the keywords in each sentence of the speech using AWS Comprehend based on context, again in real time.
-It performs a smart search for cartoon, non explicit images of the keywords using Bing Web Search
-It feedbacks the images in real time, in chronological order in the Python module Pygame. 
-It uses AWS Comprehend to assign positive, negative, or neutral emotional values to phrases depending on the context of the sentence, playing appropriate background music and character sounds. 
+## What it does;
+* Our software converts speech into text using AWS Transcribe real time.
+* It identifies the keywords in each sentence of the speech using AWS Comprehend based on context, again in real time.
+* It performs a smart search for cartoon, non explicit images of the keywords using Bing Web Search
+* It feedbacks the images in real time, in chronological order in the Python module Pygame. 
+* It uses AWS Comprehend to assign positive, negative, or neutral emotional values to phrases depending on the context of the sentence, playing appropriate background music and character sounds. 
 
-##How we built it;
+## How we built it;
 We ran the real time speech to text converter in Java, making use of AWS Transcribes most recent release (5 days ago).
 We used Python and its library Pygame to create the backend that would call the different APIs and give the appropriate output in terms of pictures and music.
 

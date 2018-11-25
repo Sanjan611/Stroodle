@@ -26,11 +26,11 @@
 * Being able to make a good use of many APIs and services. Considering none of us had any experience of using APIs, we had to overcome several difficulties (such as dependencies) to get the program up and running. And for that, we are extremely grateful of the support of the AWS staff who gave us some invaluable advice.
 * Our program achieved, and surpassed the goal we had in mind. We had no idea that we would be able to make such an interactive solution on a combination of Java and Python. It was incredibly satisfying executing the program from the command line and watching our interactive program run on its own. 
 
-## What we learned;
+## What we learned
 * We gained exposure to the wide variety of APIs offered by commercial agents and how they can make it easier to develop programs and applications for resolving real world problems. Most surprising was the fact that we could use these APIs with ease and integrate them into any projects we were working on.
 * We experienced the value of OOP in group projects; allowing for modularity meaning we could work on individual components on our own. Although individually, our progress was pretty slow, the interface structure allowed us to bring together our individual effort at the end.
 
-## What's next for Test.
+## What's next for Test
 * Creating a larger database of sounds and images (apart from the APIs being used) that would bring about a unique theme to our product.
 * Use machine learning to bring about a) personalisation to the user in regard to the kind of images and sounds they’d like in their story and b) improve the accuracy of the speech to text converter.
 * Maybe extend it to a VR project!

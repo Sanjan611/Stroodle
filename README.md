@@ -35,3 +35,13 @@
 * Use machine learning to bring about a) personalisation to the user in regard to the kind of images and sounds they’d like in their story and b) improve the accuracy of the speech to text converter.
 * Maybe extend it to a VR project!
 * Extend beyond storytelling to aid classroom teaching, etc. 
+
+## Setting up Stroodle
+#### Getting the AWS/Azure API 
+1. Go to Amazon's Developer Console https://aws.amazon.com/comprehend/ and create a new project. 
+2. Open the project and search for the API in the library. 
+3. Enable the API for your project. 
+4. Generate your Subscription Key for it. 
+### Making an installation folder
+1. Clone the repository.
+2. Enter you 

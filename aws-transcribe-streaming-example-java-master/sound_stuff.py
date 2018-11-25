@@ -27,6 +27,18 @@ sound_effects = {"thunder":"Storm_exclamation.mp3",
 negative_music = 'Beethoven-MoonlightSonata.mp3'    
 positive_music = 'SCOTT_JOPLIN_The_Entertainer.mp3'
 
+def remove_unwanted_words(search_term):
+    search_list = search_term.split(' ')
+    for i in search_list:
+        if i in colours or i in names or i in story_phrases:
+            search_list.remove(i)
+    
+    search_term = ' '.join(search_list)
+    #print(search_term)
+    
+    return search_term
+    
+
 
 def which_background_audio(sentiment):
     
@@ -46,7 +58,9 @@ def which_sound_effect(keywords):
             key = i
         
     audio_clip = sound_effects[key]
-    print(audio_clip)
+    #print(audio_clip)
+    
+    return audio_clip
     
 #which_sound_effect(['thunder', 'lightning'])
-    
+#remove_unwanted_words('red dragon thunder')    

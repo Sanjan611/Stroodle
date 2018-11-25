@@ -42,21 +42,18 @@ def remove_unwanted_words(search_term):
 
 def which_background_audio(sentiment):
     
-    #sentiment - tuple (value, type)
+    #sentiment - tuple (value, type) - HIGHEST amongst all
     # keywords is a list
     audio_clip = ''
     try:
-        if sentiment[1] == 'Normal':
+        if sentiment[1] == 'Neutral':
             return None
         
-        if sentiment[0] < 0.4:
-            if sentiment[1] == 'Negative':
-                return None
+        elif sentiment[1] == 'Negative':
             audio_clip = negative_music
-        elif sentiment[0] > 0.6:
-            if sentiment[1] == 'Positive':
-                return None
+        elif sentiment[1] == 'Positive':
             audio_clip = positive_music 
+            
     except:
         audio_clip = None
         

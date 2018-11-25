@@ -59,8 +59,8 @@ def which_background_audio(sentiment):
         
     return audio_clip
 
-def which_sound_effect(keywords):
-    
+def which_sound_effect(search_term):
+    keywords = search_term.split(' ')
     ps = PorterStemmer()
     
     #print(sound_effects.keys)

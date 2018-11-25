@@ -1,10 +1,8 @@
-
 import time
 import boto3
 import json
 import requests
 import json
-import matplotlib.pyplot as plt
 from PIL import Image
 from io import BytesIO
 import sound_stuff
@@ -74,9 +72,9 @@ if __name__ == "__main__":
         if text=="":
             print("Waiting")
             time.sleep(1)
-        
-        
-        
+    
+    
+    
         else:
             
             if "time" in text:
@@ -98,7 +96,7 @@ if __name__ == "__main__":
                 print("Text after " + text)
                 previous_text = text
                 search_term = text_analyse(text)[0]
-                sentiment=text_analyse(text)[1][1]
+                sentiment=text_analyse(text)[1]
                 
                 if search_term == previous_search_term:
                     pass
@@ -111,7 +109,7 @@ if __name__ == "__main__":
                     pygame.mixer.init()
                     
                     #  checking if there is a change in sentiment forr the background music
-                    if text_analyse(text)[1] == previous_sentiment:
+                    if text_analyse(text)[1][1] == previous_sentiment[1]:
                         pass
                     else:
                         audio_background = sound_stuff.which_background_audio(sentiment)
@@ -125,9 +123,10 @@ if __name__ == "__main__":
                     # sound effects checked every time
                     audio_sound_effects = sound_stuff.which_sound_effect(search_term)
                     
-                    if(audio_sound_effects_result！= None)：
+#                    print(audio_sound_effects)
+                    if (audio_sound_effects != "") :
                         pygame.mixer.Channel(1).stop()
-                        #pygame.mixer.music.load(audio_sound_effects)
+                        pygame.mixer.music.load(audio_sound_effects)
                         pygame.mixer.Channel(1).play(pygame.mixer.Sound(audio_sound_effects))
                     """
                         pygame.mixer.music.stop()
@@ -140,4 +139,46 @@ if __name__ == "__main__":
                             
                             
             except:
-                        pass
+                pass
+
+
+
+
+
+
+
+#ーーーーーーーーーーーーーーーー
+#if __name__ == "__main__":
+#
+#    count = 0
+#
+#    while True:
+#
+##        list = ""
+#
+#        text = file.readline()
+#
+#        if text=="":
+#            print("Waiting")
+#            time.sleep(1)
+#
+#        else:
+##            list = list + text
+##            list = list.replace('\n', ' ')
+#            count = count + 1
+#            print(count)
+#            if (count == 10):
+#
+#                print("Phrase to be analyzed: " + text)
+#
+#                try:
+#                    print(text)
+#                    search_term = text_analyse(text)
+#                    phrase_to_image(search_term + " cartoon")
+#                except:
+#                    pass
+#                count = 0
+#
+#            else:
+#
+#                pass

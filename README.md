@@ -47,7 +47,7 @@
 2. Enter your subscription key under the `read_text.py` -
 
 ```
-subscription_key = "52e2c8faa1144077b4f44ef952f761db"
+subscription_key = "Enter your key here"
 assert subscription_key
 search_url = "https://api.cognitive.microsoft.com/bing/v7.0/images/search"
 ```

@@ -1,4 +1,5 @@
  # Stroodle (Oxford Hackathon 2018)
+ Won the 2nd place prize in the Amazon AWS Educate category
 
 ## Inspiration
 * The ReadtoMe app that was developed using Amazon’s Transcribe and Comprehend API.
